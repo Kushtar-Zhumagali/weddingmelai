@@ -42,18 +42,26 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  const action = (e.parameter || {}).action;
-  if (action === 'wishes') {
+  const params = e.parameter || {};
+  let payload;
+  if (params.action === 'wishes') {
     const ss = SpreadsheetApp.getActive();
     const sh = ss.getSheetByName(SHEET_WISHES);
-    if (!sh) return json_([]);
-    const rows = sh.getDataRange().getValues().slice(1); // skip header
-    const out = rows
+    const rows = sh ? sh.getDataRange().getValues().slice(1) : []; // skip header
+    payload = rows
       .filter((r) => r[2])           // has message
       .map((r) => ({ name: r[1], message: r[2], ts: r[0] }));
-    return json_(out);
+  } else {
+    payload = { ok: true, hint: 'Use POST for RSVP, GET ?action=wishes for guestbook.' };
   }
-  return json_({ ok: true, hint: 'Use POST for RSVP, GET ?action=wishes for guestbook.' });
+  const json = JSON.stringify(payload);
+  // JSONP — the website reads wishes via <script> tag to bypass CORS
+  if (params.callback) {
+    return ContentService
+      .createTextOutput(params.callback + '(' + json + ')')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(json).setMimeType(ContentService.MimeType.JSON);
 }
 
 function getOrCreateSheet_(ss, name, headers) {

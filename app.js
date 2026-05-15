@@ -272,14 +272,14 @@
 
       const ok = await sendToSheet(payload);
 
+      // always keep a local copy so the guestbook can show the guest's own wish
+      saveLocal('rsvp', payload);
+
       if (ok === 'demo') {
-        // local-only demo mode
-        saveLocal('rsvp', payload);
         finishRsvp(payload, true, I18N[lang].demoNotice);
       } else if (ok) {
         finishRsvp(payload, true);
-        // if it's also a wish, refresh wishes after a beat
-        if (payload.message) loadWishes();
+        if (payload.message) setTimeout(loadWishes, 400);
       } else {
         btn.disabled = false;
         statusEl.className = 'rsvp-status is-error';
@@ -311,14 +311,17 @@
   async function sendToSheet(payload) {
     if (!CFG.rsvpEndpoint) return 'demo';
     try {
-      // text/plain so Apps Script doPost works without CORS preflight
-      const res = await fetch(CFG.rsvpEndpoint, {
+      // Google Apps Script /exec 302-redirects to googleusercontent.com which
+      // has no CORS headers — so a cors fetch can't read the reply. We use
+      // no-cors: the POST still reaches the script and writes the row; the
+      // response is opaque, so a resolved promise = optimistic success.
+      await fetch(CFG.rsvpEndpoint, {
         method: 'POST',
-        mode: 'cors',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
       });
-      return res.ok;
+      return true;
     } catch (err) {
       console.warn('RSVP send failed', err);
       return false;
@@ -332,27 +335,15 @@
     localStorage.setItem(key, JSON.stringify(arr));
   }
 
-  // ---------- Wishes (read from same Sheet, optional) ----------
-  async function loadWishes() {
+  // ---------- Wishes (guestbook) ----------
+  function localWishes() {
+    const arr = JSON.parse(localStorage.getItem('wed.rsvp') || '[]');
+    return arr.filter((r) => r.message).map((r) => ({ name: r.name, message: r.message }));
+  }
+
+  function renderWishes(wishes) {
     const list = $('#wishes-list');
-    if (!list) return;
-    let wishes = [];
-
-    if (CFG.rsvpEndpoint) {
-      try {
-        const res = await fetch(`${CFG.rsvpEndpoint}?action=wishes`, { mode: 'cors' });
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data)) wishes = data;
-        }
-      } catch (err) { /* ignore */ }
-    } else {
-      // demo: pull from localStorage
-      const arr = JSON.parse(localStorage.getItem('wed.rsvp') || '[]');
-      wishes = arr.filter((r) => r.message).map((r) => ({ name: r.name, message: r.message }));
-    }
-
-    if (!wishes.length) return;
+    if (!list || !wishes || !wishes.length) return;
     list.innerHTML = '';
     wishes.slice(-30).reverse().forEach((w) => {
       const li = document.createElement('li');
@@ -363,6 +354,36 @@
       li.append(n, m);
       list.appendChild(li);
     });
+  }
+
+  // Reads wishes from the Sheet via JSONP (a plain fetch can't — Apps Script
+  // gives no CORS headers). Falls back to the visitor's own local wishes.
+  function loadWishes() {
+    if (!$('#wishes-list')) return;
+    const local = localWishes();
+
+    if (!CFG.rsvpEndpoint) { renderWishes(local); return; }
+
+    const cb = 'wedWishes' + Date.now();
+    let done = false;
+    window[cb] = (data) => {
+      done = true;
+      const remote = Array.isArray(data) ? data : [];
+      // merge remote + local, de-dup by name+message
+      const seen = new Set();
+      const merged = [...remote, ...local].filter((w) => {
+        const k = (w.name || '') + '|' + (w.message || '');
+        if (seen.has(k)) return false;
+        seen.add(k); return true;
+      });
+      renderWishes(merged);
+      delete window[cb];
+    };
+    const s = document.createElement('script');
+    s.src = CFG.rsvpEndpoint + '?action=wishes&callback=' + cb;
+    s.onerror = () => { if (!done) { renderWishes(local); delete window[cb]; } };
+    document.head.appendChild(s);
+    setTimeout(() => { if (!done) { renderWishes(local); } }, 6000);
   }
 
   // ---------- Reveal on scroll ----------
