@@ -55,11 +55,6 @@
       setText('#toi-welcome', CFG.toiHosts.welcome[lang] || CFG.toiHosts.welcome.ru);
       setText('#toi-father',  CFG.toiHosts.father);
       setText('#toi-mother',  CFG.toiHosts.mother);
-      const toiPhone = $('#toi-phone');
-      if (toiPhone) {
-        toiPhone.href = `tel:${CFG.toiHosts.phone.replace(/[^\d+]/g, '')}`;
-        setText('.toi-phone-num', CFG.toiHosts.phone);
-      }
     }
 
     // contact list

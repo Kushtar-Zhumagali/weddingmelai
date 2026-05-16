@@ -1189,29 +1189,6 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
   margin-top: 10px;
   filter: drop-shadow(0 2px 8px rgba(219, 39, 119, 0.25));
 }
-.toi-phone {
-  display: inline-flex; align-items: center; gap: 9px;
-  padding: 12px 22px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 8px 22px -14px rgba(131, 24, 67, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.85);
-  color: var(--rose-deep);
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
-}
-.toi-phone:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.78);
-  border-color: var(--rose-soft);
-}
-.toi-phone svg { color: var(--rose); }
 
 /* ============ RSVP form ============ */
 .rsvp-sub {
