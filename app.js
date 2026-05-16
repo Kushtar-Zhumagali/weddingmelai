@@ -57,7 +57,7 @@
       setText('#toi-mother',  CFG.toiHosts.mother);
       const toiPhone = $('#toi-phone');
       if (toiPhone) {
-        toiPhone.href = `tel:${CFG.toiHosts.phone.replace(/\s/g, '')}`;
+        toiPhone.href = `tel:${CFG.toiHosts.phone.replace(/[^\d+]/g, '')}`;
         setText('.toi-phone-num', CFG.toiHosts.phone);
       }
     }
@@ -125,7 +125,7 @@
       label.textContent = h.label[lang] || h.label.ru || '';
       const a = document.createElement('a');
       a.className = 'c-phone';
-      a.href = `tel:${h.phone.replace(/\s/g, '')}`;
+      a.href = `tel:${h.phone.replace(/[^\d+]/g, '')}`;
       a.textContent = h.phone;
       li.append(label, a);
       list.appendChild(li);
