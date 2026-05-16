@@ -39,6 +39,11 @@ window.I18N = {
     // dress code
     dressTitle: 'Киім үлгісі',
 
+    // той иелері
+    hostsTitle: 'Той иелері',
+    fatherRole: 'Әкесі',
+    motherRole: 'Анасы',
+
     // RSVP
     rsvpTitle: 'Қатысуыңызды растаңыз',
     rsvpSubtitle: 'Дайындықты дұрыс жасау үшін 1 маусымға дейін жауап беруіңізді сұраймыз',
@@ -96,6 +101,10 @@ window.I18N = {
 
     dressTitle: 'Дресс-код',
 
+    hostsTitle: 'Хозяева торжества',
+    fatherRole: 'Отец',
+    motherRole: 'Мать',
+
     rsvpTitle: 'Подтверждение присутствия',
     rsvpSubtitle: 'Пожалуйста, подтвердите участие до 1 июня — это поможет нам всё организовать',
     fieldName: 'Ваше имя',
@@ -149,6 +158,10 @@ window.I18N = {
     mapHint: '点击地图直接跳转 2GIS 导航',
 
     dressTitle: '着装要求',
+
+    hostsTitle: '婚礼主人',
+    fatherRole: '父亲',
+    motherRole: '母亲',
 
     rsvpTitle: '出席回执',
     rsvpSubtitle: '为方便我们安排席位，请在 6 月 1 日前回复',

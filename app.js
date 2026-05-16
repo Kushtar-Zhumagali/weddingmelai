@@ -50,6 +50,18 @@
     setText('#d-venue',   CFG.venue.name[lang]    || CFG.venue.name.ru);
     setText('#d-address', CFG.venue.address[lang] || CFG.venue.address.ru);
 
+    // той иелері (wedding hosts)
+    if (CFG.toiHosts) {
+      setText('#toi-welcome', CFG.toiHosts.welcome[lang] || CFG.toiHosts.welcome.ru);
+      setText('#toi-father',  CFG.toiHosts.father);
+      setText('#toi-mother',  CFG.toiHosts.mother);
+      const toiPhone = $('#toi-phone');
+      if (toiPhone) {
+        toiPhone.href = `tel:${CFG.toiHosts.phone.replace(/\s/g, '')}`;
+        setText('.toi-phone-num', CFG.toiHosts.phone);
+      }
+    }
+
     // contact list
     renderContacts();
 
