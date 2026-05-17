@@ -34,9 +34,9 @@
   --text-muted-foreground: #64748B;
 
   /* ═══ Type · UI/UX Pro Max "Wedding/Romance" pairing ═══ */
-  --font-script:  "Great Vibes", "Cormorant Infant", cursive;
-  --font-display: "Cormorant Infant", "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
-  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  --font-script:  "Great Vibes", "Cormorant Garamond", cursive;
+  --font-display: "Cormorant Garamond", "Songti SC", "Noto Serif SC", "Noto Serif CJK SC", Georgia, serif;
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans CJK SC", sans-serif;
 
   /* ═══ Shape ═══ */
   --radius-sm: 10px;
