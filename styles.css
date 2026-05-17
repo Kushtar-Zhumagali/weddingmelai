@@ -588,19 +588,19 @@ body.is-loaded .progress { opacity: 1; pointer-events: auto; }
 
 .eyebrow {
   font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 10.5px;
-  letter-spacing: 0.55em;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
   color: var(--rose-deep);
   margin: 0;
-  padding-left: 0.55em;  /* compensate letter-spacing trailing */
+  padding-left: 0.34em;  /* compensate letter-spacing trailing */
 }
 .invite-line {
   font-family: var(--font-display);
   font-style: italic;
-  font-weight: 400;
-  font-size: clamp(15px, 4.2vw, 18px);
+  font-weight: 500;
+  font-size: clamp(18px, 4.8vw, 22px);
   color: var(--text-mute);
   margin: -4px 0 6px;
   max-width: 26ch;
@@ -680,13 +680,13 @@ body.is-loaded .progress { opacity: 1; pointer-events: auto; }
 
 .date-line {
   font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.42em;
+  font-weight: 600;
+  font-size: 14.5px;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--text-mute);
   margin: 10px 0 4px;
-  padding-left: 0.42em;
+  padding-left: 0.26em;
 }
 
 /* — Countdown — refined, no boxes, thin gold dividers — */
@@ -696,11 +696,11 @@ body.is-loaded .progress { opacity: 1; pointer-events: auto; }
 }
 .countdown-title {
   font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase;
-  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 13px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--text-mute);
   margin: 0 0 16px;
-  padding-left: 0.38em;
+  padding-left: 0.26em;
 }
 .countdown-grid {
   display: grid;
@@ -736,11 +736,11 @@ body.is-loaded .progress { opacity: 1; pointer-events: auto; }
 .cd-lbl {
   margin-top: 8px;
   font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 9px;
-  letter-spacing: 0.32em;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--text-mute);
 }
 
 /* — Scroll hint at hero bottom — */
@@ -815,16 +815,16 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
   padding: 14px 26px;
   border-radius: 999px;
   font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   transition: transform .2s var(--ease), background .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease), letter-spacing .3s var(--ease);
-  min-height: 46px;
+  min-height: 50px;
   padding-left: 28px;
 }
 .btn:active { transform: translateY(1px) scale(0.99); }
-.btn-pill { padding: 12px 22px; font-size: 11px; }
+.btn-pill { padding: 13px 24px; font-size: 13px; }
 
 .btn-ghost {
   background: rgba(255, 255, 255, 0.55);
@@ -885,13 +885,13 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 .chapter-num {
   display: block;
   font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 11px;
-  letter-spacing: 0.55em;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-deep);
   margin-bottom: 18px;
-  padding-left: 0.55em;
+  padding-left: 0.36em;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity .8s var(--ease) .1s, transform .8s var(--ease) .1s;
@@ -983,12 +983,12 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 .blessing-quote {
   font-family: var(--font-display);
   font-style: italic;
-  font-weight: 400;
-  font-size: clamp(19px, 4.8vw, 24px);
-  line-height: 1.6;
+  font-weight: 500;
+  font-size: clamp(22px, 5.4vw, 28px);
+  line-height: 1.62;
   color: var(--gold-deep);
   margin: 0 auto;
-  max-width: 38ch;
+  max-width: 34ch;
   position: relative;
   padding: 12px 22px;
 }
@@ -1065,15 +1065,16 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 .detail-card--wide { grid-column: 1 / -1; }
 .detail-label {
   font-family: var(--font-sans);
-  font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase;
-  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--text-mute);
   padding-left: 0.34em;
 }
 .detail-value {
   font-family: var(--font-display);
-  font-size: clamp(19px, 4.6vw, 24px);
+  font-size: clamp(22px, 5.2vw, 28px);
   color: var(--text);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.01em;
 }
 
@@ -1146,12 +1147,12 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 /* ============ Той иелері · wedding hosts ============ */
 .toi-welcome {
   font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(16px, 4.2vw, 19px);
-  line-height: 1.7;
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(20px, 5.2vw, 25px);
+  line-height: 1.62;
   color: var(--rose-deep);
-  max-width: 34ch;
+  max-width: 30ch;
   margin: 0 auto 30px;
 }
 .toi-parents {
@@ -1166,12 +1167,12 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 }
 .toi-parent-role {
   font-family: var(--font-sans);
-  font-size: 9.5px;
-  font-weight: 500;
-  letter-spacing: 0.34em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--rose);
-  padding-left: 0.34em;
+  padding-left: 0.22em;
 }
 .toi-parent-name {
   font-family: var(--font-display);
@@ -1192,13 +1193,14 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 
 /* ============ RSVP form ============ */
 .rsvp-sub {
-  font-size: 14px;
   color: var(--text-mute);
   margin: -10px auto 28px;
-  max-width: 38ch;
+  max-width: 34ch;
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(15px, 3.8vw, 17px);
+  font-style: normal;
+  font-weight: 500;
+  font-size: clamp(17px, 4.4vw, 20px);
+  line-height: 1.5;
 }
 .rsvp-form {
   position: relative;
@@ -1238,10 +1240,10 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 .field { display: grid; gap: 8px; }
 .field-label {
   font-family: var(--font-sans);
-  font-size: 10px; letter-spacing: 0.30em; text-transform: uppercase;
+  font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--gold-deep);
-  font-weight: 500;
-  padding-left: 0.30em;
+  font-weight: 600;
+  padding-left: 0.18em;
 }
 .rsvp-form input[type="text"],
 .rsvp-form input[type="number"],
@@ -1250,8 +1252,8 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: var(--radius-sm);
-  padding: 13px 14px;
-  font-size: 16px;
+  padding: 15px 16px;
+  font-size: 17px;
   color: var(--text);
   transition: border-color .25s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
   -webkit-appearance: none; appearance: none;
@@ -1264,18 +1266,19 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
   background: #FFFFFF;
   box-shadow: 0 0 0 4px rgba(219, 39, 119, 0.18);
 }
-.rsvp-form textarea { resize: vertical; min-height: 80px; font-family: var(--font-display); font-style: italic; font-size: 15px; }
+.rsvp-form textarea { resize: vertical; min-height: 88px; font-family: var(--font-sans); font-size: 17px; }
 
 .field-radio { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
 .field-radio legend { padding: 0; }
 .radio-pill {
   display: flex; align-items: center; gap: 12px;
-  padding: 13px 16px;
+  padding: 15px 16px;
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.55);
   transition: border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
-  font-size: 15px;
+  font-size: 17px;
+  font-weight: 500;
   cursor: pointer;
 }
 .radio-pill:hover { border-color: var(--rose-soft); background: rgba(255, 255, 255, 0.75); }
@@ -1326,7 +1329,8 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 .rsvp-status {
   margin: 4px 0 0;
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--text-mute);
   min-height: 1.2em;
   font-family: var(--font-display);
@@ -1373,26 +1377,27 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 .wishes-list .wish-name {
   display: block;
   font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
   color: var(--gold-deep);
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   letter-spacing: 0.02em;
 }
 .wishes-list .wish-text {
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: 15.5px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
   color: var(--text);
   line-height: 1.55;
 }
 .wishes-empty {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--text-dim);
+  color: var(--text-mute);
   padding: 22px;
   text-align: center;
-  font-size: 16px;
+  font-size: 18.5px;
 }
 
 /* ============ Contact ============ */
@@ -1421,12 +1426,14 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
 }
 .contact-list .c-label {
   font-family: var(--font-sans);
-  font-size: 11px; letter-spacing: 0.30em; text-transform: uppercase;
-  color: var(--text-dim);
+  font-size: 14px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-mute);
 }
 .contact-list .c-phone {
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: 23px;
+  font-weight: 600;
   color: var(--gold-deep);
   font-weight: 500;
 }
