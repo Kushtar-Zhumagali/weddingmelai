@@ -71,7 +71,7 @@ window.WEDDING_CONFIG = {
   // —— RSVP / 留言收集端点 ——
   // 部署 Google Apps Script Web App 后，把 /exec 链接粘到这里。
   // 留空时，RSVP 会保存在本地并提示"演示模式"，方便先在本地测试。
-  rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbxQUPSf4nI-TbQV1H0cFzO-sjZdGCJe1uFOFRX1rWMlOhyhmsrcuB1IV8hxWIq2wkEy/exec',
+  rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbyBwR7e8rso1ZJfZnhzOEkWKQxZ-E5Aa8eQ62BfXhsX024exkfkJ3MkP2jxV64XXxAa/exec',
 
   // —— 背景音乐（可选）——
   // 把 .mp3 放到 assets/music.mp3，按钮就会自动出现。文件不存在时按钮自动隐藏。
