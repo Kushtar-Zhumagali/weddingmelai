@@ -74,6 +74,9 @@
     // active tab
     $$('.lang-btn').forEach((b) => b.classList.toggle('is-active', b.dataset.lang === lang));
 
+    // wishes toggle button label follows language
+    updateWishesToggle();
+
     document.dispatchEvent(new CustomEvent('lang:changed', { detail: { lang } }));
   }
 
@@ -348,18 +351,60 @@
     return arr.filter((r) => r.message).map((r) => ({ name: r.name, message: r.message }));
   }
 
+  // wishes collapse/expand state
+  const WISHES_PREVIEW = 3;
+  let wishesExpanded = false;
+  let wishesTotal = 0;
+
   function renderWishes(wishes) {
     const list = $('#wishes-list');
     if (!list || !wishes || !wishes.length) return;
     list.innerHTML = '';
-    wishes.slice(-30).reverse().forEach((w) => {
+    const ordered = wishes.slice(-60).reverse();   // newest first
+    wishesTotal = ordered.length;
+    ordered.forEach((w, i) => {
       const li = document.createElement('li');
+      if (i >= WISHES_PREVIEW) li.className = 'wish-extra';
       const n = document.createElement('span');
       n.className = 'wish-name'; n.textContent = w.name || '—';
       const m = document.createElement('span');
       m.className = 'wish-text'; m.textContent = w.message || '';
       li.append(n, m);
       list.appendChild(li);
+    });
+    list.classList.toggle('is-expanded', wishesExpanded);
+    updateWishesToggle();
+  }
+
+  // toggle button — shown only when there are more than WISHES_PREVIEW wishes
+  function updateWishesToggle() {
+    const btn = $('#wishes-toggle');
+    if (!btn) return;
+    if (wishesTotal <= WISHES_PREVIEW) { btn.hidden = true; return; }
+    btn.hidden = false;
+    btn.classList.toggle('is-open', wishesExpanded);
+    const t = I18N[lang];
+    const txt = $('.wishes-toggle-text', btn);
+    if (txt) {
+      txt.textContent = wishesExpanded
+        ? t.wishesCollapse
+        : `${t.wishesShowAll} (${wishesTotal})`;
+    }
+  }
+
+  function setupWishesToggle() {
+    const btn = $('#wishes-toggle');
+    const list = $('#wishes-list');
+    if (!btn || !list) return;
+    btn.addEventListener('click', () => {
+      wishesExpanded = !wishesExpanded;
+      list.classList.toggle('is-expanded', wishesExpanded);
+      updateWishesToggle();
+      if (!wishesExpanded) {
+        // on collapse, bring the section back into view
+        document.getElementById('chapter-wishes')
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   }
 
@@ -659,6 +704,7 @@
     setup2gisLinks();
     setupMusic();
     setupRsvp();
+    setupWishesToggle();
     setupReveal();
 
     // apply language + initial render

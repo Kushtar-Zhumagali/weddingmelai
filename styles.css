@@ -1400,6 +1400,50 @@ body.is-loaded #btn-calendar { transition-delay: 1.00s; }
   font-size: 18.5px;
 }
 
+/* — collapsed state: only the first 3 wishes visible — */
+.wishes-list .wish-extra { display: none; }
+.wishes-list.is-expanded .wish-extra {
+  display: block;
+  animation: wish-in .5s var(--ease-out) both;
+}
+@keyframes wish-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.wishes-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 9px;
+  margin: 18px auto 0;
+  padding: 13px 26px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  box-shadow:
+    0 10px 28px -16px rgba(131, 24, 67, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  color: var(--gold-deep);
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
+}
+.wishes-toggle:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: var(--rose-soft);
+}
+.wishes-toggle[hidden] { display: none; }
+.wishes-toggle-ic {
+  transition: transform .35s var(--ease);
+}
+.wishes-toggle.is-open .wishes-toggle-ic { transform: rotate(180deg); }
+
 /* ============ Contact ============ */
 .contact-list {
   display: grid; gap: 12px;

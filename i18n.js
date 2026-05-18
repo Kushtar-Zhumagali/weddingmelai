@@ -65,6 +65,8 @@ window.I18N = {
     // guestbook
     wishesTitle: 'Тілектер',
     wishesEmpty: 'Әзірге тілек жоқ — алғашқы болыңыз!',
+    wishesShowAll: 'Барлық тілектерді көру',
+    wishesCollapse: 'Жасыру',
 
     // contact / footer
     contactTitle: 'Байланыс',
@@ -124,6 +126,8 @@ window.I18N = {
 
     wishesTitle: 'Книга пожеланий',
     wishesEmpty: 'Пока пожеланий нет — будьте первым!',
+    wishesShowAll: 'Показать все пожелания',
+    wishesCollapse: 'Свернуть',
 
     contactTitle: 'Контакты',
     footer: 'Сделано с любовью · 2026',
@@ -182,6 +186,8 @@ window.I18N = {
 
     wishesTitle: '宾客祝福',
     wishesEmpty: '还没有人留言 —— 您是第一位！',
+    wishesShowAll: '查看全部祝福',
+    wishesCollapse: '收起',
 
     contactTitle: '联系方式',
     footer: '以爱制作 · 2026',
