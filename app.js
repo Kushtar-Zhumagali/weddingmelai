@@ -207,26 +207,52 @@
     const btn = $('#music-btn');
     if (!CFG.music) { btn.hidden = true; return; }
     audio.src = CFG.music;
+    audio.preload = 'auto';   // 预加载，第一次交互能立刻响
 
     // probe file — hide button if missing
     fetch(CFG.music, { method: 'HEAD' }).catch(() => {}).then((r) => {
       if (!r || !r.ok) btn.hidden = true;
     });
 
+    let userPaused = false;   // 用户手动暂停后，就不再自动接管
+
+    // 平滑淡入到目标音量
+    function fadeIn() {
+      audio.volume = 0;
+      let v = 0;
+      const id = setInterval(() => {
+        v = Math.min(0.6, v + 0.04);
+        audio.volume = v;
+        if (v >= 0.6) clearInterval(id);
+      }, 60);
+    }
+
+    function startMusic() {
+      if (!audio.paused || userPaused) return;
+      audio.play().then(() => {
+        btn.classList.add('is-playing');
+        fadeIn();
+        const t = I18N[lang];
+        btn.setAttribute('aria-label', t.music.on);
+      }).catch(() => { /* 仍被拦截 — 等下一次交互 */ });
+    }
+
+    // ① 尝试直接自动播放（多数手机会被拦截，桌面端可能成功）
+    startMusic();
+
+    // ② 被拦截时：客人第一次碰屏幕 / 滑动 / 点击就自动响起
+    const kick = () => { startMusic(); };
+    ['pointerdown', 'touchstart', 'click', 'keydown', 'scroll'].forEach((ev) => {
+      window.addEventListener(ev, kick, { once: true, passive: true });
+    });
+
+    // ③ 音乐按钮：手动开关
     btn.addEventListener('click', () => {
       if (audio.paused) {
-        audio.volume = 0;
-        audio.play().then(() => {
-          btn.classList.add('is-playing');
-          // fade-in
-          let v = 0;
-          const id = setInterval(() => {
-            v = Math.min(0.6, v + 0.04);
-            audio.volume = v;
-            if (v >= 0.6) clearInterval(id);
-          }, 60);
-        }).catch(() => { /* autoplay blocked etc. */ });
+        userPaused = false;
+        audio.play().then(() => { btn.classList.add('is-playing'); fadeIn(); }).catch(() => {});
       } else {
+        userPaused = true;
         audio.pause();
         btn.classList.remove('is-playing');
       }
